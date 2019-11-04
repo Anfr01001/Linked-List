@@ -5,7 +5,7 @@ namespace Linked_List {
         static void Main(string[] args) {
             string input;
 
-            LinkedList Lista = new LinkedList();
+            LinkedList<string> Lista = new LinkedList<string>();
 
             Lista.addFirst("1");
             Lista.addFirst("2");
@@ -54,7 +54,7 @@ namespace Linked_List {
                         break;
 
                     case "P":
-                        Node toPrint = Lista.head;
+                        Node<string> toPrint = Lista.head;
                         while (toPrint != null) {
                             Console.WriteLine(toPrint.value);
                             toPrint = toPrint.nextNode;

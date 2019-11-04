@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Linked_List {
-    class LinkedList {
+    class LinkedList<T> {
 
-        public Node head = null;
+        public Node<T> head = null;
 
         /*
         *
@@ -14,10 +14,10 @@ namespace Linked_List {
         */
 
         //Lägg till först (längst till vänster)
-        public void addFirst(string Value) {
-            Node tmp = head;
+        public void addFirst(T Value) {
+            Node<T> tmp = head;
 
-            Node newNode = new Node(Value);
+            Node<T> newNode = new Node<T>(Value);
 
             //eftersom (gammla head nu är ett steg framför blir den next node för nya)
             newNode.nextNode = head;
@@ -26,10 +26,10 @@ namespace Linked_List {
         }
         
         //Lägg till sist (längst till höger)
-        public void addLast(string Value) {
-            Node tmp = head;
+        public void addLast(T Value) {
+            Node<T> tmp = head;
 
-            Node newNode = new Node(Value);
+            Node<T> newNode = new Node<T>(Value);
 
             //hitta en innan sista
             while (tmp.nextNode != null) {
@@ -40,8 +40,8 @@ namespace Linked_List {
 
         }
 
-        public Node RemoveFirst() {
-            Node ToRemove = head;
+        public Node<T> RemoveFirst() {
+            Node<T> ToRemove = head;
 
             //nya head =
             head = ToRemove.nextNode;
@@ -49,8 +49,8 @@ namespace Linked_List {
             return ToRemove;
         }
 
-        public Node RemoveLast() {
-            Node tmp = head; 
+        public Node<T> RemoveLast() {
+            Node<T> tmp = head; 
 
             //hitta en innan sista
             while (tmp.nextNode.nextNode != null) {
@@ -62,36 +62,38 @@ namespace Linked_List {
             return tmp.nextNode;
         }
 
-        public string FindValue(string value) {
-            Node tmp = head;
+        public string FindValue(T value) {
+            Node<T> tmp = head;
 
-            while (tmp != null && tmp.value != value) {
+            while (tmp != null && !tmp.value.Equals(value)) {
                 tmp = tmp.nextNode;
             }
 
-            if (tmp != null && tmp.value == value) {
+            if (tmp != null && tmp.value.Equals(value)) {
                 return "Värdet hittades och är " + value;
             } else {
                 return "Värdet fanns ej";
             }
         }
 
-        public string DeleteValue(string value) {
-            Node tmp = head;
+        public T DeleteValue(T value) {
+            Node<T> tmp = head;
 
-            if (tmp.value == value) {
+            if (tmp.value.Equals(value)) {
                 RemoveFirst();
             }
 
-            while (tmp.nextNode != null && tmp.nextNode.value != value) {
+            while (tmp.nextNode != null && !tmp.value.Equals(value)) {
                 tmp = tmp.nextNode;
             }
 
-            if (tmp.nextNode != null && tmp.nextNode.value == value) {
+            if (tmp.nextNode != null && tmp.value.Equals(value)) {
                 tmp.nextNode = tmp.nextNode.nextNode;
-                return "Värdet som var " + value + " är nu bortaget";
+                Console.WriteLine("Värdet som var " + value + " är nu bortaget");
+                return default;
             } else {
-                return "Värdet fanns ej";
+                Console.WriteLine("Värdet fanns ej");
+                return default;
             }
         }
 

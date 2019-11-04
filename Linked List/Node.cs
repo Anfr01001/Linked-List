@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Linked_List {
-    class Node {
+    class Node<T> {
 
-        public string value;
+        public T value;
 
         //Get set metod för next node
-        public Node nextNode;
+        public Node<T> nextNode;
 
         //konstruktor 
-        public Node(string Value) {
+        public Node(T Value) {
             this.value = Value;
             nextNode = null;
         }
